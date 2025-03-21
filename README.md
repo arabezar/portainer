@@ -69,6 +69,24 @@
                 
             ![SSO - редактирование приложения](./images/sso-apps-edit.png)
             </details>
+- Проверить настройку `SSO Server` можно следующим образом:
+    - В `SSO Server` вышеуказанным способом добавить приложение:
+        - `Добавить` -> `OIDC` -> Имя приложения: `OIDC callback`, `Переадресация URL`: `https://openidconnect.net/callback`
+        - `Редактировать`: находим и сохраняем `Идентификатор приложения` и `Секрет приложения`
+    - Зайти на сайт [OIDC](https://openidconnect.net) и разделе страницы `Debugger` для режима `Mode`:`OpenID Connect + OAuth2` заполнить конфигурацию (`OpenID Connect Configuration`): `Custom`
+        - `Discovery Document URL` зполнить из `SSO Server` -> `Служба` -> `OIDC` -> `Well-known URL`, нажать на кнопку `USE DISCOVERY DOCUMENT`
+        - Из предыдущего пункта создания приложения заполнить `OIDC Client ID` и `OIDC Client Secret`
+        - Заполнить `Scope`: `openid email groups`, разделяя слова пробелами (json `scopes_supported`, см. `Настройка SSO в Portainer` ниже)
+            <details>
+                <summary>Скриншот</summary>
+                
+            ![OIDC - конфигурация](./images/oidc-config.png)
+            </details>
+        - Нажать `Save`, появится диалог (1) с `Redirect to OpenID Connect Server` с запросом кода токена к серверу
+        - Нажать `Start` и, если параметры валидные (иначе `SSO Server` сам ругнётся), появится новый диалог (2) с `Exchange Code from Token` с кодом токена
+        - Нажать `Exchange`, затем `Next`, появится диалог (3) с `Verify User Token` с токеном от сервера
+        - Нажать `Verify` и при успешной проверке появится финальный диалог `The token is valid!` с расшифровкой токена авторизации
+    - Проверка пройдена
 
 ### Настройка SSO в Portainer
 
