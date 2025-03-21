@@ -7,13 +7,13 @@
 Инструкции ниже помогут вам запустить Portainer в докере на Synology DSM 7, а также, если необходимо, настроить вход в Portainer по SSO.
 
 > [!NOTE]
-> Где необходимо, иструкции снабжены скриншотами, ищите их под описанными действиями
+> Где необходимо, инструкции снабжены скриншотами, ищите их под описанными действиями
 
 ### Необходимые условия
 
 - Synology DSM 7.x
-- Установленный пакет Container Manager
-- Установленный пакет SSO Server (если требуется SSO)
+- Установленный пакет `Container Manager`
+- Установленный пакет `SSO Server` (если требуется SSO)
 
 ### Установка Portainer на Synology DSM 7.x
 
@@ -73,7 +73,7 @@
     - В `SSO Server` вышеуказанным способом добавить приложение:
         - `Добавить` -> `OIDC` -> Имя приложения: `OIDC callback`, `Переадресация URL`: `https://openidconnect.net/callback`
         - `Редактировать`: находим и сохраняем `Идентификатор приложения` и `Секрет приложения`
-    - Зайти на сайт [OIDC](https://openidconnect.net) и разделе страницы `Debugger` для режима `Mode`:`OpenID Connect + OAuth2` заполнить конфигурацию (`OpenID Connect Configuration`): `Custom`
+    - Зайти на сайт [OIDC](https://openidconnect.net) и в разделе страницы `Debugger` для режима `Mode`:`OpenID Connect + OAuth2` заполнить конфигурацию (`OpenID Connect Configuration`): `Custom`
         - `Discovery Document URL` зполнить из `SSO Server` -> `Служба` -> `OIDC` -> `Well-known URL`, нажать на кнопку `USE DISCOVERY DOCUMENT`
         - Из предыдущего пункта создания приложения заполнить `OIDC Client ID` и `OIDC Client Secret`
         - Заполнить `Scope`: `openid email groups`, разделяя слова пробелами (json `scopes_supported`, см. `Настройка SSO в Portainer` ниже)
